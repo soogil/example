@@ -14,6 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
+
+        addNumber(1,3);
         findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
@@ -36,19 +38,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onMessages(count: String) : String {
+    private fun addNumber(a:Int, b:Int, c:Int = 30) = println(a+b+c)
 
-        val list = listOf<Int>(1,2,3,4,)
-        list.joinToString(
+    private fun whenTest(anyType:Any) {
+        when(anyType) {
+            "string" -> println(anyType)
+            is Int -> println(anyType)
+            else -> print("else 구문입니다.")
+        }
 
-        )
-        return count
+
+//        val result = when(anyType) {
+//            "string" -> anyType
+//            is Int -> anyType.toString()
+//            else -> "else 구문입니다."
+//        }
+//
+//        return result
     }
-}
 
-class Test(val count2: Int, val count: String) : Test2() {
-}
+    private fun forAndWhileTest() {
+        for(i in 'a'..'z') {
+            println(i)
+        }
+        for (i in 1..9) {
+            println(i)
+        }
+        for (i in 9 downTo 1) {
+            println(i)
+        }
+        for (i in 0..9 step 3) {
+            println(i)
+        }
 
-abstract class Test2 {
-
+        var i = 0
+        do { // do while 은 한번은 꼭 실행됨
+            print(i++)
+        } while(i < 5)
+    }
 }
