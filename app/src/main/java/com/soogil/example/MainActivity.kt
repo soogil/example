@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
             else -> print("else 구문입니다.")
         }
 
-
 //        val result = when(anyType) {
 //            "string" -> anyType
 //            is Int -> anyType.toString()
