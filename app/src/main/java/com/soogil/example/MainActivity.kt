@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 //            else -> "else 구문입니다."
 //        }
 //
-//        return result
+//        return result1
     }
 
     private fun forAndWhileTest() {
