@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.soogil.example.databinding.FragmentFirstBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -16,9 +17,14 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_first, container, false)
+        val firstText:String = getString(R.string.hello_first_fragment)
+        val layout:FragmentFirstBinding = FragmentFirstBinding.inflate(inflater)
+
+        layout.textViewFirst = firstText
+
+        return layout.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
