@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
+import com.soogil.example.aac.TestViewModel
 import com.soogil.example.databinding.FragmentFirstBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
+
+    private val viewModel:TestViewModel = TestViewModel()
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -22,7 +25,7 @@ class FirstFragment : Fragment() {
         val firstText:String = getString(R.string.hello_first_fragment)
         val layout:FragmentFirstBinding = FragmentFirstBinding.inflate(inflater)
 
-        layout.textViewFirst = firstText
+        layout.textViewFirst = viewModel.getData()
 
         return layout.root
     }
