@@ -6,11 +6,9 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import com.soogil.example.aac.TestViewModel
+import com.soogil.example.aac.FirstFragmentViewModel
 
 class MainActivity : AppCompatActivity() {
-
-    val viewModel: TestViewModel = TestViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
