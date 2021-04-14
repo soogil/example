@@ -1,11 +1,11 @@
 package com.soogil.example
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.soogil.example.aac.FirstFragmentViewModel
 import com.soogil.example.databinding.FragmentFirstBinding
@@ -15,27 +15,29 @@ import com.soogil.example.databinding.FragmentFirstBinding
  */
 class FirstFragment : Fragment() {
 
-    private lateinit var viewModel:FirstFragmentViewModel
-    private var _binding:FragmentFirstBinding? = null
+    private val _viewModel: FirstFragmentViewModel = FirstFragmentViewModel()
+    private var _binding: FragmentFirstBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        activity.let {
-            viewModel = FirstFragmentViewModel(activity?.application)
-            _binding = FragmentFirstBinding.inflate(inflater)
-            binding.lifecycleOwner = this // live data 사용 시 반드시 필요
-            binding.viewModel = viewModel
-        }
+        _binding = FragmentFirstBinding.inflate(inflater)
+        binding.lifecycleOwner = this // live data 사용 시 반드시 필요
+        binding.viewModel = _viewModel
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _viewModel.nextButtonCallback.observe(viewLifecycleOwner, Observer {
+            it.getContentIfNotHandled()?.let {
+                nextFragment()
+            }
+        })
     }
 
     override fun onDestroy() {
@@ -43,8 +45,8 @@ class FirstFragment : Fragment() {
         super.onDestroy()
     }
 
-    fun nextFragment(view:View) {
-        Log.d("Log","nextFragment")
+    private fun nextFragment() {
+//        Log.d("Log","nextFragment")
         findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
     }
 }
